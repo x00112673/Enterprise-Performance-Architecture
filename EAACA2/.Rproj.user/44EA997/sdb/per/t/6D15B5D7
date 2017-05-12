@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "#!/bin/bash\n#EAA CA2\n#James O'Reilly\n#X00112673\n\n#prints header to file everytime runtest.sh is executed\n\nprintf \"%-8s %-8s %-8s\" \"CN\" \"N\" \"IDLE\" > results.dat\n\nfor i in {1..50}\ndo\n\n# Sets the loadtest file to exectue only on cpu 0\n# using taskset. The use of $i sets a different parameter\n# for the loadtest in the range 1 - 50 each time it is executed\n# the use of '&' allows a command to be exectued concurrently \n\ntimeout 10 taskset -c 0 ./loadtest $i &\n\n\n# stores the output of command in idle variable\n# mpstat gives a report of processor 0 \n# displaying 10 reports of stats at 1 second intervals\n# including an average stat\n# awk searches for 'Average' within each report\n# and retrieves the 12th value in that row which is idle\n\nidle=\"$(mpstat -P 0 1 10 | awk '/Average/ {print $12}')\"\n\n\n# stores the output of command in CN variable\n# counts number of complete transactions for each loadtest\n\nCo=\"$(cat synthetic.dat | wc -l)\"\n\n# writes the values of Co i & idle to results.dat\n\nprintf \"\\n%-8s %-8s %-8s\" \"${Co}\" $i \"${idle}\" >> results.dat\n\ndone\n\n",
+    "created" : 1481273667790.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2011001157",
+    "id" : "6D15B5D7",
+    "lastKnownWriteTime" : 1482008966,
+    "last_content_update" : 1482008966990,
+    "path" : "~/Documents/CA2/EAACA2/runtest.sh",
+    "project_path" : "runtest.sh",
+    "properties" : {
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "sh"
+}

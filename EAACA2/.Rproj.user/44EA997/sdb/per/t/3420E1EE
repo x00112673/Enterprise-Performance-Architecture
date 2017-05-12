@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#EAA CA2\n#James O'Reilly\n#X00112673\n\n# reads results.dat file into results variable including the header provided\nresults = read.table(\"results.dat\", header = TRUE)\n\n# creates N variable and populates it with\n# data from the column N in results.dat file\nN = results$N\n\n# creates T variable to 10 seconds\n# the amount of time each loadtest was active\nT = 10 \n\n# creates Co variable and populates it with\n# data from the column CN in results.dat file\n# the number of completed transactions CN \nCo = results$CN\n\n# creates Xo variable and initializes it to equal\n# completed transactions divided by time in seconds\nXo = Co / T\n\n# this is a function to calculate Ui\n# to calculate this \n# I subtracted 100 from every idle value to retrieve Bi\n# I then divided the busy time (Bi) by T to calculate Ui\nUi <- function(){\n  busy = 100 - results$IDLE\n  ui = busy / T\n}\n\n# To plot this graph I used the plot function in R\n# using main to name the graph and xlab/ylab to name\n# the axis accordingly, choosing N for the x-axis \n# because this is the independent variable\nplot(N, Ui(), main=\"Ui VS N\",\n     xlab=\"Number of Users (N)\", ylab=\"Utilization (Ui)\")\n\n# I used the abline & lines functions to calculate the following lines\n# with lm calling the regression line\n# and lowess calling the lowess line\nabline(lm(Ui()~N), col=\"red\") # regression line (y~x) \nlines(lowess(N, Ui()), col=\"blue\") # lowess line (x,y) \n\n\n# using the summary function I was able to print out\n# stats for Ui() such as min, max, median, mean, 1st \n# and 3rd quartiles \nprint(\"Summary statistics for Utilization (Ui):\")\nprint(summary(Ui()))\n\nDi = Ui() / Xo\n\n# To plot this graph I used the plot function in R\n# using main to name the graph and xlab/ylab to name\n# the axis accordingly, choosing N for the x-axis \n# because this is the independent variable\nplot(N, Di, main=\"Di VS N\",\n     xlab=\"Number of Users (N)\", ylab=\"Service Demand (Di)\")\nabline(lm(Di~N), col=\"red\") # regression line (y~x) \nlines(lowess(N, Di), col=\"blue\") # lowess line (x,y) \n\n\n# using the summary function I was able to print out\n# stats for Ui() such as min, max, median, mean, 1st \n# and 3rd quartiles \nprint(\"Summary statistics for Service Demand (Di):\")\nprint(summary(Di))\n\n\n# To plot this graph I used the plot function in R\n# using main to name the graph and xlab/ylab to name\n# the axis accordingly, choosing N for the x-axis \n# because this is the independent variable\nplot(N, Xo, main=\"Xo VS N\",\n     xlab=\"Number of Users (N)\", ylab=\"Throughput (Xo)(tps)\")\n\nabline(lm(Xo~N), col=\"red\") # regression line (y~x) \nlines(lowess(N, Xo), col=\"blue\") # lowess line (x,y) \n\n\n# using the summary function I was able to print out\n# stats for Ui() such as min, max, median, mean, 1st \n# and 3rd quartiles \nprint(\"Summary statistics for Throughtput (Xo):\")\nprint(summary(Xo))\n\nR = N / Xo\n\n# To plot this graph I used the plot function in R\n# using main to name the graph and xlab/ylab to name\n# the axis accordingly, choosing N for the x-axis \n# because this is the independent variable\nRvsN <- plot(N, R, main=\"R VS N\",\n     xlab=\"Number of Users (N)\", ylab=\"Interactive Response Time (R)(sec)\", stat=\"summary\")\n\n\nabline(lm(R~N), col=\"red\") # regression line (y~x) \nlines(lowess(N, R), col=\"blue\") # lowess line (x,y) \n\n\n# using the summary function I was able to print out\n# stats for Ui() such as min, max, median, mean, 1st \n# and 3rd quartiles \nprint(\"Summary statistics for Interactive Response Time (R):\")\nprint(summary(R))",
+    "created" : 1481277508098.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2511639834",
+    "id" : "3420E1EE",
+    "lastKnownWriteTime" : 1482077870,
+    "last_content_update" : 1482077870264,
+    "path" : "~/Documents/CA2/EAACA2/script.R",
+    "project_path" : "script.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
