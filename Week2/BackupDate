@@ -1,0 +1,9 @@
+#!/bin/bash
+#James O'Reilly 
+#x00112673
+#Week 2 Lab
+#Backup Date
+
+sudo rm /home/Backup
+
+cp -r /home/James/Documents /home/Backup

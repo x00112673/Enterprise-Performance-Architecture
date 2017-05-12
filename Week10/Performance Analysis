@@ -1,0 +1,104 @@
+General Properties:
+i) O <= Ui <= 1
+ii) Xi >= Xo (Xi >> Xo)
+iii) Vi >= 1 (Vi >> 1)
+iv) Si <= 1 (Si << 1)
+Xo = Throughput of entire system
+
+Q3:
+T = 3600
+Ucpu = 0.32
+Ud1 = 0.6
+Vd1 = 5
+Vd2 = 8
+Sd1 = 0.03
+Sd2 = 0.025
+
+Xo = 4tps
+Ud2 = 0.8
+
+i)	Xo for Disk 1:
+
+	Ui = SiXi
+	=>	Xd1 = Ud1 / Sd1
+		Xd1 = 0.6 / 0.03
+		Xd1 = 20
+
+	Vi = Xi / Xo
+	=>	Xo = Xd1 / Vd1
+		Xo = 20 / 5
+		Xo = 4 transactions per/sec
+
+ii)	Ui for Disk 2:
+
+	Vd2 = Xd2 / Xo
+	=>	Xd2 = Vd2Xd2
+		Xd2 = 8 * 4
+		Xd2 = 32 tps
+
+	Ui = SiXi
+	=>	Ud2 = 0.025 * 32
+		Ud2 = 0.8
+
+iii)	Di = Ui / Xo
+	=>	Dcpu = 0.32 / 4
+		Dcpu = 0.08 sec per transaction
+	
+	=>	Dd1 = 0.6 / 4
+		Dd1 = 0.15 spt
+
+	=> 	Dd2 = 0.8 / 4
+		Dd2 = 0.2 spt
+
+	Average Service Demand = (0.08 + 0.15 + 0.2) / 3
+	=>	0.43 / 3 = 0.143
+	
+
+Q4:
+i = Disk
+
+T = 1800
+Co = 5400
+Ci = 18900
+Ui = 0.4
+
+Vi = Xi / Xo
+=>	Xi = 18900 / 1800
+=>	Xo = 5400 / 1800
+
+=> Vi = 18900 / 5400 = 3.5
+
+Ui = SiXi
+=> 	Si = Ui / Xi
+	Si = 0.4 / (18900/1800)
+	Si = 0.4 / 10.5
+	Si = 0.038 seconds
+
+Q5:
+T = 3600
+Co = 5400
+Xo = 5400 / 3600 = 1.5
+Si = 0.03
+Vi = 3
+
+Vi = Xi/Xo 
+=>	Xi = ViXo
+	Xi = 3 * 1.5 
+	Xi = 4.5
+
+=> Ui = SiXi
+	Ui = 0.03 * 4.5
+	Ui = 0.135
+
+Q6:
+T = 3600
+?? Co = 7200
+?? Xo = 7200 / 3600 = 2
+Ui = 0.3
+Si = 0.03
+
+
+
+
+
+
